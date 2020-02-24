@@ -34,14 +34,47 @@ void BST::push_helper (TreeNode *&root, int key){
   }
 }
 
-
-//HW5-Question1
-void BST::GetBTHeight(){
-  int h=0;
-  h=BST::GetBTHeight_helper(root_);
-  cout<<h<<endl;
+//O(1)
+bool BST::find(int key)
+{
+  if(root_ == nullptr){
+    return false;
+  }
+  TreeNode *t = find_helper(root_,key);
+  if(t==nullptr){
+    return false;
+  }
+  else{
+    return true;
+  }
 }
 
+//O(logn)
+TreeNode *BST::find_helper(TreeNode *&root, int key){
+  if (root == nullptr){
+    return root;
+  }
+  if (root->val == key){
+    return root;
+  }
+  if (key < root -> val){
+    return find_helper(root->left, key);
+  }
+  else{
+    return find_helper(root->right, key);
+  }
+}
+
+
+//HW5-Question1
+//O(1)
+int BST::GetBTHeight(){
+  int h=0;
+  h=BST::GetBTHeight_helper(root_);
+  return h;
+}
+
+//O(logn)
 int BST::GetBTHeight_helper(TreeNode *bt){
 	if(bt == nullptr)
 		return 0;
@@ -57,6 +90,7 @@ void BST::inorder_recursively(){
 
 //O(logn)
 void BST::inorder_recursively_helper(TreeNode *&root){
+  vector<int> v;
   if(root == nullptr){
     return;
   }
@@ -69,7 +103,7 @@ void BST::inorder_nonrecursively(){
   BST::inorder_nonrecursively_helper(root_);
 }
 
-//O(logn)
+//O(n)
 void BST::inorder_nonrecursively_helper(TreeNode *&root){
   stack<TreeNode*> s;
   TreeNode *temp=root;

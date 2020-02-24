@@ -2,38 +2,48 @@
 #include "gtest/gtest.h"
 #include <vector>
 
-TEST(TestFind, ReturnTestFind) {
-  vector<int> init = {10, 12, 5, 4, 20, 8, 7, 15, 13};
+TEST(TestMaxh, ReturnMaxh) {
+  vector<int> init = {3,2,20,15,27};
   BST solution(init);
-  bool actual = solution.find(4);
-  EXPECT_EQ(1, actual);
+  int actual = solution.GetBTHeight();
+  EXPECT_EQ(3, actual);
 }
 
-TEST(TestFindNot, ReturnTestFindNot) {
-  vector<int> init = {10, 12, 5, 4, 20, 8, 7, 15, 13};
+TEST(TestMaxhNULL, ReturnMaxhNULL) {
+  vector<int> init = {};
   BST solution(init);
-  bool actual = solution.find(1);
+  int actual = solution.GetBTHeight();
   EXPECT_EQ(0, actual);
 }
 
-TEST(TestPush, ReturnTestPush) {
-  vector<int> init = {10, 12, 5, 4, 20, 8, 7, 15, 13};
+TEST(TestInorderRecursively, ReturnInorderRecursively) {
+  vector<int> init = {3,2,20,15,27};
   BST solution(init);
-  solution.push(9);
-  bool actual = solution.find(9);
-  EXPECT_EQ(1, actual);
+  solution.inorder_recursively();
+  bool actual1=solution.find(2);
+  bool actual2=solution.find(3);
+  bool actual3=solution.find(15);
+  bool actual4=solution.find(20);
+  bool actual5=solution.find(27);
+  EXPECT_EQ(1, actual1);
+  EXPECT_EQ(1, actual2);
+  EXPECT_EQ(1, actual3);
+  EXPECT_EQ(1, actual4);
+  EXPECT_EQ(1, actual5);
 }
 
-TEST(TestErase, ReturnTestErase) {
-  vector<int> init = {10, 12, 5, 4, 20, 8, 7, 15, 13};
+TEST(TestInorderNonRecursively, ReturnInorderNonRecursively) {
+  vector<int> init = {3,2,20,15,27};
   BST solution(init);
-  bool actual = solution.erase(4);
-  EXPECT_EQ(1, actual);
-}
-
-TEST(TestEraseNot, ReturnTestEraseNot) {
-  vector<int> init = {10, 12, 5, 4, 20, 8, 7, 15, 13};
-  BST solution(init);
-  bool actual = solution.erase(3);
-  EXPECT_EQ(0, actual);
+  solution.inorder_nonrecursively();
+  bool actual1=solution.find(2);
+  bool actual2=solution.find(3);
+  bool actual3=solution.find(15);
+  bool actual4=solution.find(20);
+  bool actual5=solution.find(27);
+  EXPECT_EQ(1, actual1);
+  EXPECT_EQ(1, actual2);
+  EXPECT_EQ(1, actual3);
+  EXPECT_EQ(1, actual4);
+  EXPECT_EQ(1, actual5);
 }

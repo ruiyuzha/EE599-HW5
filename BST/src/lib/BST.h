@@ -27,7 +27,7 @@ void push(int key); // **GT** Inserts a key inside Tree
 bool find(int key); // **GT** Returns true of key is in the tree
 bool erase(int key); // **GT** Removes the key from the tree. If not successful, returns false.
 
-void GetBTHeight();
+int GetBTHeight();
 void inorder_recursively();
 void inorder_nonrecursively();
 
